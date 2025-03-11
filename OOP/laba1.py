@@ -44,7 +44,7 @@ for color, label in [('red', 'Цены < 10000'), ('yellow', 'Цены 10000-199
     ))
 
 fig.update_layout(
-    title="3D Scatter Plot для horsepower, curbweight, citympg и price",
+    title="График для horsepower, curbweight, citympg и price",
     scene=dict(
         xaxis_title="Лошадиные силы (horsepower)",
         yaxis_title="Вес кузова (curbweight)",
