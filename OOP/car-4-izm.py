@@ -84,7 +84,7 @@ for clust in [4, 5]:
     axs[2].scatter(y[idx], z[idx], s=sizes[idx], c=colors[clust], alpha=0.5)
 axs[2].set_title("Объём двигателя vs Масса")
 
-print(sizes)
+#print(sizes)
 
-plt.tight_layout()
+
 plt.show()
