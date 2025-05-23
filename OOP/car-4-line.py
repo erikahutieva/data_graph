@@ -1,8 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D  # для 3D графиков
+from mpl_toolkits.mplot3d import Axes3D  
 
-# Чтение данных
 data = []
 with open("CarPrice_Assignment.csv", "r", encoding="utf-8") as file:
     lines = file.read().splitlines()
@@ -19,7 +18,6 @@ for row in data:
     data_special.append([float(row[col]) for col in columns])
 array = np.array(data_special)
 
-# Масштабирование с весами
 weights = np.array([0.9, 7.4, 9.0, 0.01])
 standard = array * weights
 
@@ -28,7 +26,6 @@ y = standard[:, 1]
 z = standard[:, 2]  
 sizes = standard[:, 3]  
 
-# Определяем метки кластеров по условию (срез на плоскости)
 a = 9
 b = 100
 labels = []
@@ -39,31 +36,28 @@ for i in range(len(x)):
         labels.append(0)
 labels = np.array(labels)
 
-# Назначение цветов кластеров
+
 color_map = {0: 'blue', 1: 'orange'}
 colors = [color_map[label] for label in labels]
 
-# Создание фигуры и 3D оси
 fig = plt.figure(figsize=(10, 8))
 ax = fig.add_subplot(111, projection='3d')
 
-# Основной 3D scatter
+
 ax.scatter(x, y, z, s=sizes, c=colors, alpha=0.6)
 ax.set_xlabel("Мощность")
 ax.set_ylabel("Объём двигателя")
 ax.set_zlabel("Масса")
 ax.set_title("3D график (размер точки соответствует цене)")
 
-# Добавление среза (проекции) на плоскость XY.
-# Выбираем фиксированное значение z для среза (например, минимальное значение z)
+
 z_slice = ax.get_zlim()[0]
 ax.scatter(x[labels == 0], y[labels == 0], zs=z_slice, s=sizes[labels == 0],
            c='blue', alpha=0.6, label='Cluster 0 (проекция)')
 ax.scatter(x[labels == 1], y[labels == 1], zs=z_slice, s=sizes[labels == 1],
            c='orange', alpha=0.6, label='Cluster 1 (проекция)')
 
-# Отображение легенды
-ax.legend()
+
 
 plt.tight_layout()
 plt.show()

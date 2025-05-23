@@ -55,20 +55,11 @@ ax3d.set_ylabel("Объём двигателя")
 ax3d.set_zlabel("Масса")
 ax3d.set_title("график (цена 4 измер)")
 
-
-
-
-
 fig2, axs = plt.subplots(1, 3)
 for clust in [0, 1]:
     idx = (xy == clust)  # фильтр по кластеру
     axs[0].scatter(x[idx], y[idx], s=sizes[idx], c=colors[clust], alpha=0.5)
 axs[0].set_title("Мощность vs Объём двигателя")
-
-
-
-
-
 
 for clust in [2, 3]:
     idx = (xz == (clust - 2)) 
